@@ -9,6 +9,6 @@ export class HeroService{
   }
 
   getHeroesSlowly(){
-    return new Promise<Hero[]>(resolve => setTimeout(()=>resolve(HEROES),2000))
+    return new Promise<Hero[]>(resolve => setTimeout(()=>resolve(HEROES),1000))
   }
 }
