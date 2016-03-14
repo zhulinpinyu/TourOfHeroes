@@ -1,9 +1,6 @@
-import {Component} from 'angular2/core';
-
-interface Hero{
-  id: number;
-  name: String;
-}
+import {Component} from 'angular2/core'
+import {Hero} from "./hero"
+import {HeroDetailComponent} from "./hero-detail.component"
 
 var HEROES: Hero[] = [
   { "id": 11, "name": "Mr. Nice" },
@@ -16,10 +13,11 @@ var HEROES: Hero[] = [
   { "id": 18, "name": "Dr IQ" },
   { "id": 19, "name": "Magma" },
   { "id": 20, "name": "Tornado" }
-];
+]
 
 @Component({
   selector: 'my-app',
+  directives: [HeroDetailComponent],
   styles: [`
     .selected {
       background-color: #CFD8DC !important;
@@ -75,26 +73,15 @@ var HEROES: Hero[] = [
                   <span class="badge">{{hero.id}}</span>{{hero.name}}
                 </li>
              </ul>
-             <div *ngIf="selectedHero">
-               <h2>{{selectedHero.name}}</h2>
-               <div>
-                  <label>id:</label>{{selectedHero.id}}
-               </div>
-               <div>
-                  <label>name:</label>
-                  <div>
-                    <input [(ngModel)]="selectedHero.name" placeHolder="name"/>
-                  </div>
-               </div>
-             <div>
+             <hero-detail [hero]="selectedHero"></hero-detail>
              `
 })
 export class AppComponent{
-  public title = "Tour of Heroes!";
-  public name = "My Heroes";
-  public heroes = HEROES;
-  selectedHero: Hero;
+  public title = "Tour of Heroes!"
+  public name = "My Heroes"
+  public heroes = HEROES
+  selectedHero: Hero
   onSelect(hero: Hero){
-    this.selectedHero = hero;
+    this.selectedHero = hero
   }
 }
